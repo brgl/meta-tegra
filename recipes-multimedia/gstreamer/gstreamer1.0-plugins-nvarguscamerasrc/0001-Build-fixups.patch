@@ -7,10 +7,10 @@ Subject: [PATCH] Build fixups
  Makefile | 28 ++++++++++++----------------
  1 file changed, 12 insertions(+), 16 deletions(-)
 
-diff --git a/Makefile b/Makefile
-index 4f45209..5122678 100644
---- a/Makefile
-+++ b/Makefile
+Index: gst-nvarguscamera/Makefile
+===================================================================
+--- gst-nvarguscamera.orig/Makefile
++++ gst-nvarguscamera/Makefile
 @@ -26,21 +26,16 @@
  
  SO_NAME := libgstnvarguscamerasrc.so
@@ -43,7 +43,7 @@ index 4f45209..5122678 100644
  OBJS := $(SRCS:.cpp=.o)
  
 -CFLAGS += -fPIC
-+CXXFLAGS += -fPIC
++CXXFLAGS += -fPIC -I=$(includedir)/Argus/utils
  
 -CFLAGS += `pkg-config --cflags $(PKGS)`
 +CXXFLAGS += `pkg-config --cflags $(PKGS)`

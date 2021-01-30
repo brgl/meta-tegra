@@ -2,7 +2,7 @@ Index: gst-nvarguscamera/gstnvarguscamerasrc.cpp
 ===================================================================
 --- gst-nvarguscamera.orig/gstnvarguscamerasrc.cpp
 +++ gst-nvarguscamera/gstnvarguscamerasrc.cpp
-@@ -302,7 +302,7 @@ bool StreamConsumer::threadExecute(GstNv
+@@ -299,7 +299,7 @@ bool StreamConsumer::threadExecute(GstNv
    src->frameInfo->fd = -1;
    while (true)
    {
@@ -11,7 +11,7 @@ Index: gst-nvarguscamera/gstnvarguscamerasrc.cpp
      GError *error = NULL;
      Event* event = NULL;
      IEvent* iEvent = NULL;
-@@ -323,7 +323,7 @@ bool StreamConsumer::threadExecute(GstNv
+@@ -320,7 +320,7 @@ bool StreamConsumer::threadExecute(GstNv
      if (!iEvent)
      {
        src->argus_in_error = true;
@@ -20,7 +20,7 @@ Index: gst-nvarguscamera/gstnvarguscamerasrc.cpp
      }
  
      if (iEvent->getEventType() == EVENT_TYPE_ERROR)
-@@ -333,8 +333,8 @@ bool StreamConsumer::threadExecute(GstNv
+@@ -330,8 +330,8 @@ bool StreamConsumer::threadExecute(GstNv
  
        src->argus_in_error = TRUE;
        const IEventError* iEventError = interface_cast<const IEventError>(event);
@@ -31,7 +31,7 @@ Index: gst-nvarguscamera/gstnvarguscamerasrc.cpp
        GstMessage *message = gst_message_new_error (GST_OBJECT(src), error, "Argus Error Status");
        gst_element_post_message (GST_ELEMENT_CAST(src), message);
        g_mutex_lock (&src->argus_buffers_queue_lock);
-@@ -356,7 +356,7 @@ bool StreamConsumer::threadExecute(GstNv
+@@ -353,7 +353,7 @@ bool StreamConsumer::threadExecute(GstNv
          if (!src->timeout_complete)
          {
            src->argus_in_error = true;
@@ -40,7 +40,7 @@ Index: gst-nvarguscamera/gstnvarguscamerasrc.cpp
            GstMessage *message = gst_message_new_error (GST_OBJECT(src), error, "Argus Error Status");
            gst_element_post_message (GST_ELEMENT_CAST(src), message);
            g_mutex_lock (&src->argus_buffers_queue_lock);
-@@ -673,7 +673,7 @@ static bool execute(int32_t cameraIndex,
+@@ -658,7 +658,7 @@ static bool execute(int32_t cameraIndex,
    src->iCaptureSession_ptr = iCaptureSession;
    IEventProvider *iEventProvider = interface_cast<IEventProvider>(captureSession);
    if (!iEventProvider)
@@ -49,7 +49,7 @@ Index: gst-nvarguscamera/gstnvarguscamerasrc.cpp
  
    src->iEventProvider_ptr = iEventProvider;
  
-@@ -686,7 +686,7 @@ static bool execute(int32_t cameraIndex,
+@@ -671,7 +671,7 @@ static bool execute(int32_t cameraIndex,
    src->queue = UniqueObj<EventQueue>(iEventProvider->createEventQueue(eventTypes));
    IEventQueue *iQueue = interface_cast<IEventQueue>(src->queue);
    if (!iQueue)

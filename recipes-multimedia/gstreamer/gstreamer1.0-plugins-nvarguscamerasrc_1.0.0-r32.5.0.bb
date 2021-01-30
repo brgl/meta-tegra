@@ -12,7 +12,6 @@ require recipes-bsp/tegra-sources/tegra-sources-32.5.0.inc
 
 SRC_URI += "\
     file://0001-Build-fixups.patch \
-    file://0002-Remove-dependencies-on-tegra-mmapi-sample-code.patch \
     file://0003-Fix-nvarguscamerasrc-build-errors.patch \
 "
 
