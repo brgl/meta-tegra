@@ -1,7 +1,7 @@
 SUMMARY = "OpenMAX IL plugins for GStreamer (Nvidia-specific)"
 SECTION = "multimedia"
 LICENSE = "LGPLv2.1"
-DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-nveglgles gstreamer1.0-plugins-tegra"
+DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-nveglgles gstreamer1.0-plugins-tegra-binaryonly"
 DEPENDS += "tegra-libraries"
 
 TEGRA_SRC_SUBARCHIVE = "Linux_for_Tegra/source/public/gstomx1_src.tbz2"
