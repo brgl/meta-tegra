@@ -12,7 +12,8 @@ require recipes-bsp/tegra-sources/tegra-sources-32.5.0.inc
 
 SRC_URI += "\
     file://0001-Build-fixups.patch \
-    file://0003-Fix-nvarguscamerasrc-build-errors.patch \
+    file://0002-Fix-nvarguscamerasrc-build-errors.patch \
+    file://0003-Use-GST_DEBUG-functions-instead-of-printf-for-loggin.patch \
 "
 
 DEPENDS = "gstreamer1.0 glib-2.0 gstreamer1.0-plugins-base virtual/egl tegra-libraries tegra-mmapi"
