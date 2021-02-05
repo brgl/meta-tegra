@@ -2,30 +2,24 @@ SECTION = "kernel"
 SUMMARY = "Linux for Tegra kernel recipe"
 DESCRIPTION = "Linux kernel from sources provided by Nvidia for Tegra processors."
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 inherit l4t_bsp
 require recipes-kernel/linux/linux-yocto.inc
 
-LINUX_VERSION ?= "4.9.140"
+LINUX_VERSION ?= "5.10.13"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}-${@bb.parse.BBHandler.vars_from_file(d.getVar('FILE', False),d)[1]}:"
 
 LINUX_VERSION_EXTENSION ?= "-l4t-r${@'.'.join(d.getVar('L4T_VERSION').split('.')[:2])}"
 SCMVERSION ??= "y"
 
-SRCBRANCH = "patches${LINUX_VERSION_EXTENSION}"
-SRCREV = "166b394331e2ffc509368b7942d8821a711ef381"
+SRCBRANCH = "linux-5.10.y"
+SRCREV = "0c245c5fe93f0e9769de4a8b31f129b2759bf802"
 KBRANCH = "${SRCBRANCH}"
-SRC_REPO = "github.com/OE4T/linux-tegra-4.9;protocol=https"
-KERNEL_REPO = "${SRC_REPO}"
-SRC_URI = "git://${KERNEL_REPO};name=machine;branch=${KBRANCH} \
-           ${@'file://localversion_auto.cfg' if d.getVar('SCMVERSION') == 'y' else ''} \
-           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://systemd.cfg', '', d)} \
-"
+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-5.10.y \
+           file://defconfig"
 
-KBUILD_DEFCONFIG = "tegra_defconfig"
-KCONFIG_MODE = "--alldefconfig"
 
 set_scmversion() {
     if [ "${SCMVERSION}" = "y" -a -d "${S}/.git" ]; then
